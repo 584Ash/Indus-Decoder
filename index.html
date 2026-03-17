@@ -3,71 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashish Indus Decoder & Scanner</title>
+    <title>Indus Master Decoder |Ashish Kumar Patel</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4e7d3; color: #333; text-align: center; padding: 20px; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid #8d6e63; }
-        h1 { color: #5d4037; text-transform: uppercase; letter-spacing: 2px; }
-        .section { margin-top: 30px; padding: 20px; border: 1px dashed #8d6e63; background: #fffaf0; border-radius: 10px; }
-        select, button, input { padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #8d6e63; margin: 5px; }
-        button { background-color: #5d4037; color: white; cursor: pointer; transition: 0.3s; }
-        button:hover { background-color: #3e2723; }
-        #result { margin-top: 30px; padding: 20px; font-size: 22px; font-weight: bold; color: #2e7d32; border-top: 2px solid #eee; background: #e8f5e9; border-radius: 10px; }
-        #preview { max-width: 100%; height: auto; margin-top: 10px; display: none; border: 2px solid #8d6e63; }
-        .footer { margin-top: 50px; font-size: 12px; color: #888; }
+        :root { --paper: #e0c9a6; --ink: #2b1d0e; --gold: #b8860b; }
+        body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; padding: 10px; }
+        .master-container { max-width: 1000px; margin: auto; background: #fdf5e6; border: 5px double var(--ink); padding: 25px; border-radius: 5px; }
+        
+        /* Category Tabs */
+        .category-tabs { display: flex; gap: 5px; overflow-x: auto; margin-bottom: 15px; padding-bottom: 10px; }
+        .tab-btn { background: var(--ink); color: var(--paper); border: none; padding: 8px 15px; cursor: pointer; border-radius: 4px; font-size: 12px; white-space: nowrap; }
+        
+        /* Expanded Sign Grid */
+        .sign-vault { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 8px; max-height: 300px; overflow-y: auto; border: 2px solid var(--ink); padding: 10px; background: #fff; }
+        .sign-card { border: 1px solid #ccc; text-align: center; cursor: pointer; transition: 0.2s; background: #fff; }
+        .sign-card:hover { background: var(--gold); color: white; scale: 1.1; }
+        .sign-char { font-size: 35px; display: block; }
+        .sign-info { font-size: 9px; display: block; text-transform: uppercase; }
+
+        .workbench { min-height: 120px; border: 3px dashed var(--ink); margin: 20px 0; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.5); }
+        .rtl { flex-direction: row-reverse; }
+
+        #final-analysis { background: var(--ink); color: var(--paper); padding: 15px; border-radius: 5px; margin-top: 20px; font-size: 18px; line-height: 1.6; border-left: 10px solid var(--gold); }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>🏺 Ashish Indus Decoder & Scanner</h1>
-    <p>"Decoding 5000 years of silence with Structural AI Logic"</p>
-    <hr>
+<div class="master-container">
+    <h1 style="text-align: center; border-bottom: 2px solid var(--ink);">🏺  ASHISH MASTER DECODER</h1>
+    <p style="text-align: center; font-style: italic;">"Mapping the DNA of the Indus Valley Civilization"</p>
 
-    <div class="section">
-        <h3>1. Manual Sign Select:</h3>
-        <select id="sign1"><option value="">Sign 1 (Right)</option><option value="ka">𐊰 (Jar)</option><option value="shri">𐊛 (Fish)</option><option value="adhikari">𐊈 (Man)</option></select>
-        <select id="sign2"><option value="">Sign 2 (Middle)</option><option value="ka">𐊰 (Jar)</option><option value="shri">𐊛 (Fish)</option><option value="adhikari">𐊈 (Man)</option></select>
-        <button onclick="decodeManual()">Manual Decode</button>
+    <div class="category-tabs">
+        <button class="tab-btn">Elite Titles (Prefix)</button>
+        <button class="tab-btn">Animal Totems</button>
+        <button class="tab-btn">Trade & Grain</button>
+        <button class="tab-btn">Numerals</button>
+        <button class="tab-btn">Suffixes (Possessive)</button>
     </div>
 
-    <div class="section">
-        <h3>2. AI Image Scanner:</h3>
-        <input type="file" id="imageInput" accept="image/*" onchange="previewImage()">
-        <br>
-        <img id="preview" alt="Seal Preview">
-        <br>
-        <button onclick="scanImage()">Scan & Analyze Seal</button>
+    <div class="sign-vault" id="vault">
+        <div class="sign-card" onclick="pick('𐊰', 'KA (Suffix)', 'High')"><span class="sign-char">𐊰</span><span class="sign-info">Jar</span></div>
+        <div class="sign-card" onclick="pick('𐊛', 'MIN (Divine)', 'Elite')"><span class="sign-char">𐊛</span><span class="sign-info">Fish</span></div>
+        <div class="sign-card" onclick="pick('𐊈', 'VIR (Leader)', 'Rank')"><span class="sign-char">𐊈</span><span class="sign-info">Man</span></div>
+        <div class="sign-card" onclick="pick('⚙️', 'CHAKRA (Chief)', 'Title')"><span class="sign-char">⚙️</span><span class="sign-info">Wheel</span></div>
+        <div class="sign-card" onclick="pick('𐊷', 'ANNA (Tax)', 'Trade')"><span class="sign-char">𐊷</span><span class="sign-info">Harrow</span></div>
+        <div class="sign-card" onclick="pick('𐋄', 'UR (City)', 'Place')"><span class="sign-char">𐋄</span><span class="sign-info">Square</span></div>
+        <div class="sign-card" onclick="pick('𐃬', 'ASHVA (Power)', 'Symbol')"><span class="sign-char">𐃬</span><span class="sign-info">Shield</span></div>
+        <div class="sign-card" onclick="pick('Ψ', 'TRISHUL', 'Ritual')"><span class="sign-char">Ψ</span><span class="sign-info">Trident</span></div>
+        <div class="sign-card" onclick="pick('III', 'TRI', 'Number')"><span class="sign-char">III</span><span class="sign-info">Num-3</span></div>
+        <div class="sign-card" onclick="pick('||||', 'CHET', 'Number')"><span class="sign-char">||||</span><span class="sign-info">Num-4</span></div>
     </div>
 
-    <div id="result">Result Yahan Dikhega...</div>
+    <div class="workbench" id="bench"></div>
 
-    <div class="footer">
-        © 2026 Ashish Kumar Patel & Gemini AI | Global Research Project
+    <div style="display:flex; gap:10px; justify-content:center;">
+        <button onclick="toggleRTL()" style="background:var(--gold); padding:10px 20px; color:white; border:none; border-radius:5px;">Change Direction</button>
+        <button onclick="analyze()" style="background:var(--ink); padding:10px 20px; color:white; border:none; border-radius:5px;">RUN GLOBAL DECODE 🚀</button>
+    </div>
+
+    <div id="final-analysis">
+        <strong>System Status:</strong> Ready for Inscription Input.
     </div>
 </div>
 
 <script>
-    function previewImage() {
-        const file = document.getElementById('imageInput').files[0];
-        const preview = document.getElementById('preview');
-        const reader = new FileReader();
-        reader.onload = function(e) { 
-            preview.src = e.target.result; 
-            preview.style.display = 'inline-block';
+    let stream = [];
+    let isRTL = false;
+
+    function pick(c, m, f) {
+        stream.push({c, m, f});
+        updateBench();
+    }
+
+    function updateBench() {
+        const b = document.getElementById('bench');
+        b.innerHTML = stream.map((s,i) => `<div style="font-size:40px; padding:10px; border:1px solid var(--ink); background:white; position:relative;">${s.c}<span onclick="stream.splice(${i},1);updateBench()" style="position:absolute; top:0; right:0; font-size:12px; color:red; cursor:pointer;">X</span></div>`).join("");
+        if(isRTL) b.classList.add('rtl'); else b.classList.remove('rtl');
+    }
+
+    function toggleRTL() { isRTL = !isRTL; updateBench(); }
+
+    function analyze() {
+        if(stream.length === 0) return;
+        let logic = "Ashish Global Analysis: Found <strong>" + stream.length + "</strong> linguistic markers. <br>";
+        
+        let hasSuffix = stream.some(s => s.m.includes("Suffix"));
+        let hasDivine = stream.some(s => s.m.includes("Divine"));
+        
+        if(hasSuffix && hasDivine) {
+            logic += "Result: High-Status Official Seal. Meaning: <strong>'Property of the Holy Leader'</strong>.";
+        } else if (hasSuffix) {
+            logic += "Result: Personal Trade Seal. Meaning: <strong>'Belonging to the individual'</strong>.";
+        } else {
+            logic += "Result: Administrative Label. Meaning: <strong>'Certified City/Goods Rank'</strong>.";
         }
-        reader.readAsDataURL(file);
-    }
-
-    function decodeManual() {
-        let s1 = document.getElementById('sign1').value;
-        let s2 = document.getElementById('sign2').value;
-        let res = (s1 === "ka") ? `Belonging to the ${s2}` : `${s2} ${s1}`;
-        document.getElementById('result').innerHTML = "✨ Result: " + res;
-    }
-
-    function scanImage() {
-        document.getElementById('result').innerHTML = "🔍 Scanning Seal Patterns... <br> Applying Ashish Structural Logic... <br> Result: Pattern matches 'Elite Official' (𐊛 + 𐊈). Translation: Divine Leader.";
+        
+        document.getElementById('final-analysis').innerHTML = logic;
     }
 </script>
 
