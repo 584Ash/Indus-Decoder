@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Kumar-Gemini Indus Decoder</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4e7d3; color: #333; text-align: center; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid #8d6e63; }
+        h1 { color: #5d4037; text-transform: uppercase; letter-spacing: 2px; }
+        p { font-style: italic; color: #795548; }
+        .decoder-box { margin-top: 30px; padding: 20px; border: 1px dashed #8d6e63; background: #fffaf0; }
+        select, button { padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #8d6e63; cursor: pointer; }
+        button { background-color: #5d4037; color: white; transition: 0.3s; }
+        button:hover { background-color: #3e2723; }
+        #result { margin-top: 30px; padding: 20px; font-size: 20px; font-weight: bold; color: #2e7d32; border-top: 2px solid #eee; }
+        .footer { margin-top: 50px; font-size: 12px; color: #888; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🏺 Kumar-Gemini Indus Decoder</h1>
+    <p>"Decoding 5000 years of silence with Structural Logic"</p>
+    <hr>
+
+    <div class="decoder-box">
+        <h3>Sign Select Karo (Right to Left Logic):</h3>
+        <div id="input-area">
+            <select id="sign1">
+                <option value="">Sign 1 (Rightmost)</option>
+                <option value="ka">𐊰 (Jar - Suffix)</option>
+                <option value="shri">𐊛 (Fish - Divine)</option>
+                <option value="adhikari">𐊈 (Man - Official)</option>
+                <option value="anna">𐊷 (Harrow - Grain)</option>
+                <option value="pramukh">⚙️ (Wheel - Chief)</option>
+            </select>
+            
+            <select id="sign2">
+                <option value="">Sign 2 (Middle)</option>
+                <option value="ka">𐊰 (Jar - Suffix)</option>
+                <option value="shri">𐊛 (Fish - Divine)</option>
+                <option value="adhikari">𐊈 (Man - Official)</option>
+                <option value="anna">𐊷 (Harrow - Grain)</option>
+                <option value="pramukh">⚙️ (Wheel - Chief)</option>
+            </select>
+
+            <select id="sign3">
+                <option value="">Sign 3 (Leftmost)</option>
+                <option value="ka">𐊰 (Jar - Suffix)</option>
+                <option value="shri">𐊛 (Fish - Divine)</option>
+                <option value="adhikari">𐊈 (Man - Official)</option>
+                <option value="anna">𐊷 (Harrow - Grain)</option>
+                <option value="pramukh">⚙️ (Wheel - Chief)</option>
+            </select>
+        </div>
+        <br>
+        <button onclick="decode()">Decode Inscription</button>
+    </div>
+
+    <div id="result">Hasil Yahan Dikhega...</div>
+
+    <div class="footer">
+        © 2026 Kumar & Gemini Research Project | Worldwide Open Access Decipherment
+    </div>
+</div>
+
+<script>
+    function decode() {
+        let s1 = document.getElementById('sign1').value;
+        let s2 = document.getElementById('sign2').value;
+        let s3 = document.getElementById('sign3').value;
+
+        if (!s1 && !s2 && !s3) {
+            document.getElementById('result').innerHTML = "Bhai, pehle signs toh chuno!";
+            return;
+        }
+
+        // Structural Logic: Combinations
+        let translation = "";
+        
+        // Reverse reading logic (Right to Left)
+        let words = [s3, s2, s1].filter(x => x !== "");
+        
+        let sentence = words.join(" ");
+
+        // Special Case: Jar Sign at end
+        if (s1 === "ka") {
+            translation = "Decoding: '" + sentence.replace("ka", "") + " ka' (Belonging to the " + sentence.replace("ka", "") + ")";
+        } else {
+            translation = "Possible Meaning: " + sentence;
+        }
+
+        document.getElementById('result').innerHTML = "✨ " + translation;
+    }
+</script>
+
+</body>
+</html>
