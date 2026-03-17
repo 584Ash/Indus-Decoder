@@ -3,65 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indus Master Decoder |Ashish Kumar Patel</title>
+    <title>Indus Master Decoder & Visual Search | ASHISH KUMAR PATEL</title>
     <style>
         :root { --paper: #e0c9a6; --ink: #2b1d0e; --gold: #b8860b; }
         body { background: var(--paper); color: var(--ink); font-family: 'Georgia', serif; padding: 10px; }
-        .master-container { max-width: 1000px; margin: auto; background: #fdf5e6; border: 5px double var(--ink); padding: 25px; border-radius: 5px; }
+        .master-container { max-width: 1000px; margin: auto; background: #fdf5e6; border: 5px double var(--ink); padding: 25px; border-radius: 5px; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
         
-        /* Category Tabs */
-        .category-tabs { display: flex; gap: 5px; overflow-x: auto; margin-bottom: 15px; padding-bottom: 10px; }
-        .tab-btn { background: var(--ink); color: var(--paper); border: none; padding: 8px 15px; cursor: pointer; border-radius: 4px; font-size: 12px; white-space: nowrap; }
+        /* Grid for Signs */
+        .sign-vault { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 15px; max-height: 400px; overflow-y: auto; border: 2px solid var(--ink); padding: 15px; background: #fff; margin-top: 10px; }
+        .sign-card { border: 1px solid #ccc; text-align: center; padding: 10px; transition: 0.2s; background: #fff; border-radius: 8px; }
+        .sign-card:hover { border-color: var(--gold); transform: scale(1.02); }
+        .sign-char { font-size: 40px; display: block; cursor: pointer; }
+        .sign-info { font-size: 10px; color: #555; display: block; margin-bottom: 5px; font-weight: bold; }
         
-        /* Expanded Sign Grid */
-        .sign-vault { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 8px; max-height: 300px; overflow-y: auto; border: 2px solid var(--ink); padding: 10px; background: #fff; }
-        .sign-card { border: 1px solid #ccc; text-align: center; cursor: pointer; transition: 0.2s; background: #fff; }
-        .sign-card:hover { background: var(--gold); color: white; scale: 1.1; }
-        .sign-char { font-size: 35px; display: block; }
-        .sign-info { font-size: 9px; display: block; text-transform: uppercase; }
-
-        .workbench { min-height: 120px; border: 3px dashed var(--ink); margin: 20px 0; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.5); }
+        /* Search Button */
+        .search-btn { font-size: 10px; background: var(--gold); color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; }
+        
+        .workbench { min-height: 120px; border: 3px dashed var(--ink); margin: 20px 0; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.7); border-radius: 10px; }
         .rtl { flex-direction: row-reverse; }
 
         #final-analysis { background: var(--ink); color: var(--paper); padding: 15px; border-radius: 5px; margin-top: 20px; font-size: 18px; line-height: 1.6; border-left: 10px solid var(--gold); }
+        button.action-btn { background: var(--ink); color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="master-container">
-    <h1 style="text-align: center; border-bottom: 2px solid var(--ink);">🏺  ASHISH MASTER DECODER</h1>
-    <p style="text-align: center; font-style: italic;">"Mapping the DNA of the Indus Valley Civilization"</p>
-
-    <div class="category-tabs">
-        <button class="tab-btn">Elite Titles (Prefix)</button>
-        <button class="tab-btn">Animal Totems</button>
-        <button class="tab-btn">Trade & Grain</button>
-        <button class="tab-btn">Numerals</button>
-        <button class="tab-btn">Suffixes (Possessive)</button>
-    </div>
+    <h1 style="text-align: center;">🏺 THE ASHISH INDUS MASTER DECODER</h1>
+    <p style="text-align: center; font-style: italic;">"Visual Archaeological Database & Structural Logic Engine"</p>
 
     <div class="sign-vault" id="vault">
-        <div class="sign-card" onclick="pick('𐊰', 'KA (Suffix)', 'High')"><span class="sign-char">𐊰</span><span class="sign-info">Jar</span></div>
-        <div class="sign-card" onclick="pick('𐊛', 'MIN (Divine)', 'Elite')"><span class="sign-char">𐊛</span><span class="sign-info">Fish</span></div>
-        <div class="sign-card" onclick="pick('𐊈', 'VIR (Leader)', 'Rank')"><span class="sign-char">𐊈</span><span class="sign-info">Man</span></div>
-        <div class="sign-card" onclick="pick('⚙️', 'CHAKRA (Chief)', 'Title')"><span class="sign-char">⚙️</span><span class="sign-info">Wheel</span></div>
-        <div class="sign-card" onclick="pick('𐊷', 'ANNA (Tax)', 'Trade')"><span class="sign-char">𐊷</span><span class="sign-info">Harrow</span></div>
-        <div class="sign-card" onclick="pick('𐋄', 'UR (City)', 'Place')"><span class="sign-char">𐋄</span><span class="sign-info">Square</span></div>
-        <div class="sign-card" onclick="pick('𐃬', 'ASHVA (Power)', 'Symbol')"><span class="sign-char">𐃬</span><span class="sign-info">Shield</span></div>
-        <div class="sign-card" onclick="pick('Ψ', 'TRISHUL', 'Ritual')"><span class="sign-char">Ψ</span><span class="sign-info">Trident</span></div>
-        <div class="sign-card" onclick="pick('III', 'TRI', 'Number')"><span class="sign-char">III</span><span class="sign-info">Num-3</span></div>
-        <div class="sign-card" onclick="pick('||||', 'CHET', 'Number')"><span class="sign-char">||||</span><span class="sign-info">Num-4</span></div>
+        <div class="sign-card">
+            <span class="sign-char" onclick="pick('𐊰', 'Jar')">𐊰</span>
+            <span class="sign-info">JAR SIGN</span>
+            <a href="https://www.google.com/search?q=Indus+Valley+Seal+Jar+Sign+Inscription&tbm=isch" target="_blank" class="search-btn">🔍 Search Seals</a>
+        </div>
+        <div class="sign-card">
+            <span class="sign-char" onclick="pick('𐊛', 'Fish')">𐊛</span>
+            <span class="sign-info">FISH SIGN</span>
+            <a href="https://www.google.com/search?q=Indus+Valley+Seal+Fish+Symbol+Images&tbm=isch" target="_blank" class="search-btn">🔍 Search Seals</a>
+        </div>
+        <div class="sign-card">
+            <span class="sign-char" onclick="pick('𐊈', 'Man')">𐊈</span>
+            <span class="sign-info">MAN SIGN</span>
+            <a href="https://www.google.com/search?q=Indus+Valley+Seal+Human+Figure+Inscription&tbm=isch" target="_blank" class="search-btn">🔍 Search Seals</a>
+        </div>
+        <div class="sign-card">
+            <span class="sign-char" onclick="pick('⚙️', 'Wheel')">⚙️</span>
+            <span class="sign-info">WHEEL SIGN</span>
+            <a href="https://www.google.com/search?q=Indus+Valley+Seal+Wheel+Chakra+Symbol&tbm=isch" target="_blank" class="search-btn">🔍 Search Seals</a>
+        </div>
+        <div class="sign-card">
+            <span class="sign-char" onclick="pick('𐊷', 'Harrow')">𐊷</span>
+            <span class="sign-info">HARROW SIGN</span>
+            <a href="https://www.google.com/search?q=Indus+Valley+Seal+Harrow+Agriculture+Symbol&tbm=isch" target="_blank" class="search-btn">🔍 Search Seals</a>
+        </div>
+        <div class="sign-card">
+            <span class="sign-char" onclick="pick('𐋄', 'Square')">𐋄</span>
+            <span class="sign-info">CITY SIGN</span>
+            <a href="https://www.google.com/search?q=Indus+Valley+Seal+Crossed+Square+Symbol&tbm=isch" target="_blank" class="search-btn">🔍 Search Seals</a>
+        </div>
     </div>
 
-    <div class="workbench" id="bench"></div>
+    <div class="workbench" id="bench">
+        <p style="color: #888;">Select signs to build inscription...</p>
+    </div>
 
-    <div style="display:flex; gap:10px; justify-content:center;">
-        <button onclick="toggleRTL()" style="background:var(--gold); padding:10px 20px; color:white; border:none; border-radius:5px;">Change Direction</button>
-        <button onclick="analyze()" style="background:var(--ink); padding:10px 20px; color:white; border:none; border-radius:5px;">RUN GLOBAL DECODE 🚀</button>
+    <div style="display:flex; gap:10px; justify-content:center; flex-wrap: wrap;">
+        <button class="action-btn" onclick="toggleRTL()" style="background:var(--gold);">Change Direction (RTL/LTR)</button>
+        <button class="action-btn" onclick="analyze()">RUN GLOBAL DECODE 🚀</button>
+        <button class="action-btn" onclick="clearAll()" style="background:#8b0000;">Reset</button>
     </div>
 
     <div id="final-analysis">
-        <strong>System Status:</strong> Ready for Inscription Input.
+        <strong>Status:</strong> Ready for Visual Analysis.
     </div>
 </div>
 
@@ -69,35 +84,33 @@
     let stream = [];
     let isRTL = false;
 
-    function pick(c, m, f) {
-        stream.push({c, m, f});
+    function pick(c, m) {
+        stream.push({c, m});
         updateBench();
     }
 
     function updateBench() {
         const b = document.getElementById('bench');
-        b.innerHTML = stream.map((s,i) => `<div style="font-size:40px; padding:10px; border:1px solid var(--ink); background:white; position:relative;">${s.c}<span onclick="stream.splice(${i},1);updateBench()" style="position:absolute; top:0; right:0; font-size:12px; color:red; cursor:pointer;">X</span></div>`).join("");
+        if(stream.length === 0) { b.innerHTML = "Select signs..."; return; }
+        b.innerHTML = stream.map((s,i) => `<div style="font-size:45px; padding:10px; border:1px solid var(--ink); background:white; position:relative;">${s.c}<span onclick="event.stopPropagation(); removeSign(${i})" style="position:absolute; top:-10px; right:-10px; background:red; color:white; border-radius:50%; width:20px; height:20px; font-size:12px; cursor:pointer; display:flex; align-items:center; justify-content:center;">X</span></div>`).join("");
         if(isRTL) b.classList.add('rtl'); else b.classList.remove('rtl');
     }
 
+    function removeSign(i) { stream.splice(i, 1); updateBench(); }
+    function clearAll() { stream = []; updateBench(); document.getElementById('final-analysis').innerHTML = "Ready."; }
     function toggleRTL() { isRTL = !isRTL; updateBench(); }
 
     function analyze() {
         if(stream.length === 0) return;
-        let logic = "Ashish Global Analysis: Found <strong>" + stream.length + "</strong> linguistic markers. <br>";
+        let result = "<strong>Kumar-Gemini Structural Result:</strong><br>";
+        let signsText = stream.map(s => s.m).join(" + ");
         
-        let hasSuffix = stream.some(s => s.m.includes("Suffix"));
-        let hasDivine = stream.some(s => s.m.includes("Divine"));
-        
-        if(hasSuffix && hasDivine) {
-            logic += "Result: High-Status Official Seal. Meaning: <strong>'Property of the Holy Leader'</strong>.";
-        } else if (hasSuffix) {
-            logic += "Result: Personal Trade Seal. Meaning: <strong>'Belonging to the individual'</strong>.";
+        if(stream.some(s => s.m === 'Jar')) {
+            result += "Pattern: Possessive Suffix Detected. <br>Meaning: Property/Office of <strong>" + signsText.replace(" + Jar", "") + "</strong>.";
         } else {
-            logic += "Result: Administrative Label. Meaning: <strong>'Certified City/Goods Rank'</strong>.";
+            result += "Pattern: Identification Title. <br>Meaning: <strong>" + signsText + "</strong>.";
         }
-        
-        document.getElementById('final-analysis').innerHTML = logic;
+        document.getElementById('final-analysis').innerHTML = result;
     }
 </script>
 
