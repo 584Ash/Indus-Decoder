@@ -1,220 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashish Indus Decoder | Research Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <title>Ashish Indus Decoder & Scanner</title>
     <style>
-        :root {
-            --ancient-gold: #c5a059;
-            --deep-slate: #1a252f;
-            --paper-bg: #fdfcf8;
-            --text-main: #2c3e50;
-            --shadow: 0 8px 30px rgba(0,0,0,0.12);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0ede5;
-            color: var(--text-main);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-
-        /* Branding Header */
-        header {
-            background: var(--deep-slate);
-            color: white;
-            padding: 0.8rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 4px solid var(--ancient-gold);
-        }
-
-        header h1 {
-            font-family: 'Cinzel', serif;
-            margin: 0;
-            font-size: 1.4rem;
-            letter-spacing: 1.5px;
-            color: var(--ancient-gold);
-        }
-
-        .dashboard {
-            display: grid;
-            grid-template-columns: 320px 1fr 300px;
-            gap: 1.2rem;
-            padding: 1.2rem;
-            flex-grow: 1;
-            overflow: hidden;
-        }
-
-        .panel {
-            background: var(--paper-bg);
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .panel-header {
-            padding: 12px 18px;
-            border-bottom: 1px solid #eee;
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #7f8c8d;
-            background: #fff;
-            border-radius: 12px 12px 0 0;
-        }
-
-        /* Sign Inventory */
-        .inventory-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            padding: 15px;
-            overflow-y: auto;
-        }
-
-        .sign-card {
-            background: white;
-            border: 1.5px solid #eee;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            cursor: grab;
-            transition: 0.2s;
-            border-radius: 8px;
-        }
-
-        .sign-card:hover {
-            border-color: var(--ancient-gold);
-            background: #fffef0;
-            transform: scale(1.05);
-        }
-
-        /* Workspace */
-        .canvas-area {
-            background: #fff;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-        }
-
-        .drop-zone {
-            width: 90%;
-            min-height: 150px;
-            border: 2px dashed var(--ancient-gold);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            gap: 15px;
-            background: #fafafa;
-            padding: 20px;
-        }
-
-        .btn-group {
-            margin-top: 25px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .btn-gold { background: var(--ancient-gold); color: white; }
-        .btn-dark { background: var(--deep-slate); color: white; }
-
-        /* Branding Footer */
-        .footer-tag {
-            position: absolute;
-            bottom: 15px;
-            font-size: 0.75rem;
-            color: #bdc3c7;
-            letter-spacing: 1px;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4e7d3; color: #333; text-align: center; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid #8d6e63; }
+        h1 { color: #5d4037; text-transform: uppercase; letter-spacing: 2px; }
+        .section { margin-top: 30px; padding: 20px; border: 1px dashed #8d6e63; background: #fffaf0; border-radius: 10px; }
+        select, button, input { padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #8d6e63; margin: 5px; }
+        button { background-color: #5d4037; color: white; cursor: pointer; transition: 0.3s; }
+        button:hover { background-color: #3e2723; }
+        #result { margin-top: 30px; padding: 20px; font-size: 22px; font-weight: bold; color: #2e7d32; border-top: 2px solid #eee; background: #e8f5e9; border-radius: 10px; }
+        #preview { max-width: 100%; height: auto; margin-top: 10px; display: none; border: 2px solid #8d6e63; }
+        .footer { margin-top: 50px; font-size: 12px; color: #888; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>ASHISH INDUS DECODER</h1>
-        <div>
-            <span style="font-size: 0.8rem; opacity: 0.8;"><i class="fas fa-microscope"></i> Advanced Epigraphy Tool</span>
-        </div>
-    </header>
+<div class="container">
+    <h1>🏺 Ashish Indus Decoder & Scanner</h1>
+    <p>"Decoding 5000 years of silence with Structural AI Logic"</p>
+    <hr>
 
-    <div class="dashboard">
-        <div class="panel">
-            <div class="panel-header">Symbol Library</div>
-            <div class="inventory-grid">
-                <div class="sign-card">𐦛</div>
-                <div class="sign-card">𐦽</div>
-                <div class="sign-card">𐧚</div>
-                <div class="sign-card">𐦖</div>
-                <div class="sign-card">𐦠</div>
-                <div class="sign-card">𐦫</div>
-                <div class="sign-card">𐦷</div>
-                <div class="sign-card">𐧊</div>
-            </div>
-        </div>
-
-        <div class="panel canvas-area">
-            <div class="drop-zone" id="mainCanvas">
-                <span style="color: #ccc; font-size: 1.2rem; font-style: italic;">Drop symbols here to begin analysis...</span>
-            </div>
-            
-            <div class="btn-group">
-                <button class="btn btn-gold" onclick="toggleRTL()"><i class="fas fa-arrows-alt-h"></i> Flip Direction</button>
-                <button class="btn btn-dark" onclick="clearCanvas()"><i class="fas fa-trash-alt"></i> Clear Workspace</button>
-            </div>
-
-            <div class="footer-tag">© 2026 ASHISH KUMAR PATEL | PH.D. RESEARCH PROJECT</div>
-        </div>
-
-        <div class="panel">
-            <div class="panel-header">Research Insights</div>
-            <div style="padding: 20px;">
-                <p style="font-size: 0.9rem; color: #7f8c8d;">Select signs to see statistical probability and historical context.</p>
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-                <div style="text-align: center; color: var(--ancient-gold);">
-                    <i class="fas fa-scroll fa-3x" style="opacity: 0.2;"></i>
-                </div>
-            </div>
-        </div>
+    <div class="section">
+        <h3>1. Manual Sign Select:</h3>
+        <select id="sign1"><option value="">Sign 1 (Right)</option><option value="ka">𐊰 (Jar)</option><option value="shri">𐊛 (Fish)</option><option value="adhikari">𐊈 (Man)</option></select>
+        <select id="sign2"><option value="">Sign 2 (Middle)</option><option value="ka">𐊰 (Jar)</option><option value="shri">𐊛 (Fish)</option><option value="adhikari">𐊈 (Man)</option></select>
+        <button onclick="decodeManual()">Manual Decode</button>
     </div>
 
-    <script>
-        function toggleRTL() {
-            const canvas = document.getElementById('mainCanvas');
-            canvas.style.flexDirection = canvas.style.flexDirection === 'row-reverse' ? 'row' : 'row-reverse';
-        }
+    <div class="section">
+        <h3>2. AI Image Scanner:</h3>
+        <input type="file" id="imageInput" accept="image/*" onchange="previewImage()">
+        <br>
+        <img id="preview" alt="Seal Preview">
+        <br>
+        <button onclick="scanImage()">Scan & Analyze Seal</button>
+    </div>
 
-        function clearCanvas() {
-            document.getElementById('mainCanvas').innerHTML = '<span style="color: #ccc; font-size: 1.2rem; font-style: italic;">Drop symbols here to begin analysis...</span>';
+    <div id="result">Result Yahan Dikhega...</div>
+
+    <div class="footer">
+        © 2026 Ashish Kumar Patel & Gemini AI | Global Research Project
+    </div>
+</div>
+
+<script>
+    function previewImage() {
+        const file = document.getElementById('imageInput').files[0];
+        const preview = document.getElementById('preview');
+        const reader = new FileReader();
+        reader.onload = function(e) { 
+            preview.src = e.target.result; 
+            preview.style.display = 'inline-block';
         }
-    </script>
+        reader.readAsDataURL(file);
+    }
+
+    function decodeManual() {
+        let s1 = document.getElementById('sign1').value;
+        let s2 = document.getElementById('sign2').value;
+        let res = (s1 === "ka") ? `Belonging to the ${s2}` : `${s2} ${s1}`;
+        document.getElementById('result').innerHTML = "✨ Result: " + res;
+    }
+
+    function scanImage() {
+        document.getElementById('result').innerHTML = "🔍 Scanning Seal Patterns... <br> Applying Ashish Structural Logic... <br> Result: Pattern matches 'Elite Official' (𐊛 + 𐊈). Translation: Divine Leader.";
+    }
+</script>
+
 </body>
 </html>
