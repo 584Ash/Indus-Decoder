@@ -1,75 +1,46 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Ashish Indus Decoder & Scanner</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4e7d3; color: #333; text-align: center; padding: 20px; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid #8d6e63; }
-        h1 { color: #5d4037; text-transform: uppercase; letter-spacing: 2px; }
-        .section { margin-top: 30px; padding: 20px; border: 1px dashed #8d6e63; background: #fffaf0; border-radius: 10px; }
-        select, button, input { padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #8d6e63; margin: 5px; }
-        button { background-color: #5d4037; color: white; cursor: pointer; transition: 0.3s; }
-        button:hover { background-color: #3e2723; }
-        #result { margin-top: 30px; padding: 20px; font-size: 22px; font-weight: bold; color: #2e7d32; border-top: 2px solid #eee; background: #e8f5e9; border-radius: 10px; }
-        #preview { max-width: 100%; height: auto; margin-top: 10px; display: none; border: 2px solid #8d6e63; }
-        .footer { margin-top: 50px; font-size: 12px; color: #888; }
-    </style>
+    <title>Ashish Indus Decoder Pro</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>🏺 Indus-Decoder <span>v2.0</span></h1>
+        <div class="controls">
+            <button id="toggleDir">Direction: RTL ⇄ LTR</button>
+            <button id="clearAll">Clear Canvas</button>
+        </div>
+    </header>
 
-<div class="container">
-    <h1>🏺 Ashish Indus Decoder & Scanner</h1>
-    <p>"Decoding 5000 years of silence with Structural AI Logic"</p>
-    <hr>
+    <main class="container">
+        <aside class="sign-library">
+            <h3>Sign Gallery</h3>
+            <div class="search-bar">
+                <input type="text" placeholder="Search signs (e.g. fish, jar)...">
+            </div>
+            <div class="grid" id="signGrid">
+                <div class="sign-item" draggable="true" data-id="1">𐦛</div>
+                <div class="sign-item" draggable="true" data-id="2">𐦽</div>
+                <div class="sign-item" draggable="true" data-id="3">𐧚</div>
+                </div>
+        </aside>
 
-    <div class="section">
-        <h3>1. Manual Sign Select:</h3>
-        <select id="sign1"><option value="">Sign 1 (Right)</option><option value="ka">𐊰 (Jar)</option><option value="shri">𐊛 (Fish)</option><option value="adhikari">𐊈 (Man)</option></select>
-        <select id="sign2"><option value="">Sign 2 (Middle)</option><option value="ka">𐊰 (Jar)</option><option value="shri">𐊛 (Fish)</option><option value="adhikari">𐊈 (Man)</option></select>
-        <button onclick="decodeManual()">Manual Decode</button>
-    </div>
+        <section class="workspace">
+            <h3>Decoding Canvas</h3>
+            <div id="dropZone" class="drop-zone rtl-mode">
+                <p class="placeholder">Drag signs here to decode...</p>
+            </div>
+            
+            <div class="analysis-panel">
+                <h4>Real-time Analysis</h4>
+                <div id="stats">Frequency: -- | Context: -- | Possible Meaning: --</div>
+            </div>
+        </section>
+    </main>
 
-    <div class="section">
-        <h3>2. AI Image Scanner:</h3>
-        <input type="file" id="imageInput" accept="image/*" onchange="previewImage()">
-        <br>
-        <img id="preview" alt="Seal Preview">
-        <br>
-        <button onclick="scanImage()">Scan & Analyze Seal</button>
-    </div>
-
-    <div id="result">Result Yahan Dikhega...</div>
-
-    <div class="footer">
-        © 2026 Ashish Kumar Patel  | Global Research Project
-    </div>
-</div>
-
-<script>
-    function previewImage() {
-        const file = document.getElementById('imageInput').files[0];
-        const preview = document.getElementById('preview');
-        const reader = new FileReader();
-        reader.onload = function(e) { 
-            preview.src = e.target.result; 
-            preview.style.display = 'inline-block';
-        }
-        reader.readAsDataURL(file);
-    }
-
-    function decodeManual() {
-        let s1 = document.getElementById('sign1').value;
-        let s2 = document.getElementById('sign2').value;
-        let res = (s1 === "ka") ? `Belonging to the ${s2}` : `${s2} ${s1}`;
-        document.getElementById('result').innerHTML = "✨ Result: " + res;
-    }
-
-    function scanImage() {
-        document.getElementById('result').innerHTML = "🔍 Scanning Seal Patterns... <br> Applying Kumar Structural Logic... <br> Result: Pattern matches 'Elite Official' (𐊛 + 𐊈). Translation: Divine Leader.";
-    }
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
