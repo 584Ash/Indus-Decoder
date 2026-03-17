@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Kumar-Gemini Indus Decoder</title>
+    <title>The Kumar Indus Decoder</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4e7d3; color: #333; text-align: center; padding: 20px; }
         .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid #8d6e63; }
@@ -20,7 +20,7 @@
 <body>
 
 <div class="container">
-    <h1>🏺 Kumar-Gemini Indus Decoder</h1>
+    <h1>🏺 Kumar Indus Decoder</h1>
     <p>"Decoding 5000 years of silence with Structural Logic"</p>
     <hr>
 
